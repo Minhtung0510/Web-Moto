@@ -1,0 +1,153 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\css\\product-form.css",
+      "PackagePath": "staticwebassets\\css\\product-form.css"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\acquy-gs.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\acquy-gs.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\baga-givi.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\baga-givi.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\den-led-l4x.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\den-led-l4x.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\guong-ky.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\guong-ky.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\khoa-kinbar.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\khoa-kinbar.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\loc-gio-dna.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\loc-gio-dna.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\lop-michelin.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\lop-michelin.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\nhot-castrol.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\nhot-castrol.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\phanh-brembo.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\phanh-brembo.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\Spare\\yen-takano.jpg",
+      "PackagePath": "staticwebassets\\images\\Spare\\yen-takano.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\airblade160.jpg",
+      "PackagePath": "staticwebassets\\images\\airblade160.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\exciter155.jpg",
+      "PackagePath": "staticwebassets\\images\\exciter155.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\janus.jpg",
+      "PackagePath": "staticwebassets\\images\\janus.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\391b1894-1b11-4e3a-bf55-c5d37e0cd634.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\391b1894-1b11-4e3a-bf55-c5d37e0cd634.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\49ce6d65-b303-41a9-8ece-267b3d17e190.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\49ce6d65-b303-41a9-8ece-267b3d17e190.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\4df1bee6-8ca8-4e58-a9aa-7cec9fdf37c1.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\4df1bee6-8ca8-4e58-a9aa-7cec9fdf37c1.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\58ac8af1-a2dc-43c5-a0ad-3d160ad13ac8.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\58ac8af1-a2dc-43c5-a0ad-3d160ad13ac8.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\645c263e-ced2-4f79-85dc-88199f821aac.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\645c263e-ced2-4f79-85dc-88199f821aac.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\681f22b7-24bc-4de4-aceb-02ae5b3031a2.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\681f22b7-24bc-4de4-aceb-02ae5b3031a2.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\68f700fc-79bc-43c6-be78-2c1a7ef5b3b9.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\68f700fc-79bc-43c6-be78-2c1a7ef5b3b9.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\777a8dff-3bfc-4197-be49-16d193f49ba8.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\777a8dff-3bfc-4197-be49-16d193f49ba8.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\7d8aa62e-323f-4047-a160-b61c291038eb.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\7d8aa62e-323f-4047-a160-b61c291038eb.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\9bd6f12e-e8a3-4e93-be17-1341422edbb5.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\9bd6f12e-e8a3-4e93-be17-1341422edbb5.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\aae98ba6-10ee-4160-8a5b-1d3ae651fdf2.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\aae98ba6-10ee-4160-8a5b-1d3ae651fdf2.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\be7c6224-6f41-46e6-bbca-9c4a228d9641.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\be7c6224-6f41-46e6-bbca-9c4a228d9641.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\c1a00e51-9ff9-41d7-918c-63317cc88728.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\c1a00e51-9ff9-41d7-918c-63317cc88728.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\products\\d0e45a20-30a5-4952-ad64-1e4bdb996d74.jpg",
+      "PackagePath": "staticwebassets\\images\\products\\d0e45a20-30a5-4952-ad64-1e4bdb996d74.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\images\\vision2024.jpg",
+      "PackagePath": "staticwebassets\\images\\vision2024.jpg"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\js\\product-ai.js",
+      "PackagePath": "staticwebassets\\js\\product-ai.js"
+    },
+    {
+      "Id": "E:\\Dự án cá nhân\\NewProject\\MotoBikeStore_aspnetcore_sample\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MotoBikeStore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MotoBikeStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MotoBikeStore.props",
+      "PackagePath": "build\\MotoBikeStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MotoBikeStore.props",
+      "PackagePath": "buildMultiTargeting\\MotoBikeStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MotoBikeStore.props",
+      "PackagePath": "buildTransitive\\MotoBikeStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

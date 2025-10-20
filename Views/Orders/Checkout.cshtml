@@ -1,0 +1,588 @@
+@model MotoBikeStore.Models.Order
+@{ Layout="~/Views/Shared/_Layout.cshtml"; ViewData["Title"]="Thanh toán"; }
+
+<div class="container py-5">
+  <h3 class="mb-4"><i class="fas fa-credit-card me-2"></i>Thanh toán đơn hàng</h3>
+  
+  <div class="row g-4">
+    <!-- Customer Info Form -->
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Thông tin khách hàng</h5>
+        </div>
+        <div class="card-body">
+          <form asp-action="Checkout" asp-controller="Orders" method="post" id="checkoutForm">
+            @Html.AntiForgeryToken()
+            
+            @if (!ViewData.ModelState.IsValid)
+            {
+              <div class="alert alert-danger" role="alert">
+                <h6 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Vui lòng kiểm tra lại thông tin:</h6>
+                <ul class="mb-0">
+                  @foreach (var key in ViewData.ModelState.Keys)
+                  {
+                    foreach (var error in ViewData.ModelState[key].Errors)
+                    {
+                      <li>@error.ErrorMessage</li>
+                    }
+                  }
+                </ul>
+              </div>
+            }
+            
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Họ tên <span class="text-danger">*</span></label>
+                <input type="text" name="CustomerName" id="CustomerName" value="@Model.CustomerName" class="form-control" required />
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                <input type="tel" name="Phone" id="Phone" value="@Model.Phone" class="form-control" 
+                       placeholder="VD: 0901234567" pattern="[0-9]{10,11}" required />
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input type="email" name="Email" id="Email" value="@Model.Email" class="form-control" 
+                       placeholder="example@email.com" />
+              </div>
+              
+              <div class="col-12">
+                <label class="form-label">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                <textarea name="Address" id="Address" class="form-control" rows="2" required>@Model.Address</textarea>
+              </div>
+              
+              <div class="col-12">
+                <label class="form-label">Ghi chú</label>
+                <textarea name="Notes" id="Notes" class="form-control" rows="2" 
+                          placeholder="Ghi chú thêm về đơn hàng (nếu có)">@Model.Notes</textarea>
+              </div>
+              
+              <!-- PAYMENT METHOD - ENHANCED -->
+              <div class="col-12 mt-4">
+                <label class="form-label fw-bold fs-5 mb-3">
+                  <i class="fas fa-wallet me-2"></i>Hình thức thanh toán
+                </label>
+                
+                <div class="payment-methods">
+                  <!-- COD Option -->
+                  <div class="payment-option">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" id="cod" 
+                           value="Tiền mặt" @(Model.PaymentMethod == "Tiền mặt" ? "checked" : "") required>
+                    <label class="payment-label" for="cod">
+                      <div class="payment-icon cod-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                      </div>
+                      <div class="payment-info">
+                        <div class="payment-name">Thanh toán khi nhận hàng (COD)</div>
+                        <small class="text-muted">Thanh toán tiền mặt cho shipper khi nhận hàng</small>
+                      </div>
+                      <div class="payment-badge">
+                        <span class="badge bg-success">Phổ biến</span>
+                      </div>
+                    </label>
+                  </div>
+
+                  <!-- QR Payment Option -->
+                  <div class="payment-option">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" id="qr" 
+                           value="Chuyển khoản" @(Model.PaymentMethod == "Chuyển khoản" ? "checked" : "")>
+                    <label class="payment-label" for="qr">
+                      <div class="payment-icon qr-icon">
+                        <i class="fas fa-qrcode"></i>
+                      </div>
+                      <div class="payment-info">
+                        <div class="payment-name">Chuyển khoản QR (VietQR)</div>
+                        <small class="text-muted">Quét mã QR để thanh toán qua Ngân hàng/Ví điện tử</small>
+                      </div>
+                      <div class="payment-badge">
+                        <span class="badge bg-primary">Nhanh</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-success w-100 btn-lg mt-4">
+              <i class="fas fa-check-circle me-2"></i>Xác nhận đặt hàng
+            </button>
+            
+            <div class="text-center mt-3">
+              <small class="text-muted">
+                <i class="fas fa-lock me-1"></i>Thanh toán an toàn và bảo mật
+              </small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-5">
+      <div class="card mb-3">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Đơn hàng của bạn</h5>
+        </div>
+        <div class="card-body">
+          @foreach(var p in (List<MotoBikeStore.Models.Product>)ViewBag.Products)
+          {
+            <div class="d-flex mb-3 pb-3 border-bottom">
+              <img src="@p.ImageUrl" style="width:60px;height:60px;object-fit:contain" class="me-3" />
+              <div class="flex-grow-1">
+                <h6 class="mb-1">@p.Name</h6>
+                <small class="text-muted">Số lượng: 1</small>
+              </div>
+              <div class="text-end">
+                <strong>@p.Price.ToString("N0")₫</strong>
+              </div>
+            </div>
+          }
+          
+          <div class="border-top pt-3">
+            <div class="d-flex justify-content-between mb-2">
+              <span>Tạm tính:</span>
+              <strong id="subtotal">@(((decimal)ViewBag.Subtotal).ToString("N0"))₫</strong>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-2">
+              <span>Phí vận chuyển:</span>
+              <strong id="shipping">@(((decimal)ViewBag.Subtotal >= 5000000) ? "Miễn phí" : "150,000₫")</strong>
+            </div>
+            
+            <div class="d-flex justify-content-between mb-3 text-success" id="discountRow" style="display:none !important">
+              <span>Giảm giá:</span>
+              <strong id="discount">0₫</strong>
+            </div>
+            
+            <div class="d-flex justify-content-between fs-5 border-top pt-3">
+              <strong>Tổng cộng:</strong>
+              <strong class="text-danger" id="total">
+                @(((decimal)ViewBag.Subtotal >= 5000000 
+                    ? (decimal)ViewBag.Subtotal 
+                    : (decimal)ViewBag.Subtotal + 150000).ToString("N0"))₫
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🎁 SHOPEE-STYLE COUPON SECTION -->
+      <div class="card mb-3 coupon-card">
+        <div class="card-body p-0">
+          <div class="coupon-header" data-bs-toggle="collapse" data-bs-target="#couponList">
+            <div class="d-flex align-items-center">
+              <div class="coupon-icon">
+                <i class="fas fa-ticket-alt"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="fw-bold">Mã giảm giá</div>
+                <small class="text-muted" id="selectedCouponText">Chọn hoặc nhập mã</small>
+              </div>
+              <i class="fas fa-chevron-right"></i>
+            </div>
+          </div>
+          
+          <div class="collapse" id="couponList">
+            <div class="coupon-body">
+              <!-- Manual Input -->
+              <div class="coupon-input-section">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="manualCouponInput" 
+                         placeholder="Nhập mã giảm giá" />
+                  <button class="btn btn-primary" type="button" onclick="applyManualCoupon()">
+                    Áp dụng
+                  </button>
+                </div>
+              </div>
+
+              <div class="coupon-divider">
+                <span>Hoặc chọn mã có sẵn</span>
+              </div>
+
+              <!-- Available Coupons List -->
+              <div class="available-coupons" id="availableCoupons">
+                <!-- Will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="couponMessage" class="mt-2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS -->
+<style>
+/* Payment Methods */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-option {
+  position: relative;
+}
+
+.payment-option .form-check-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.payment-label {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.payment-label:hover {
+  border-color: #28a745;
+  background: #f8fff9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.1);
+}
+
+.payment-option .form-check-input:checked ~ .payment-label {
+  border-color: #28a745;
+  background: #f0fff4;
+  box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
+}
+
+.payment-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  font-size: 24px;
+}
+
+.cod-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.qr-icon {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.payment-info {
+  flex: 1;
+}
+
+.payment-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.payment-badge {
+  margin-left: 12px;
+}
+
+/* Coupon Card - Shopee Style */
+.coupon-card {
+  border: 2px dashed #ff6b35;
+  overflow: hidden;
+}
+
+.coupon-header {
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.coupon-header:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.coupon-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+.coupon-body {
+  padding: 16px;
+  background: #f8f9fa;
+}
+
+.coupon-input-section {
+  margin-bottom: 16px;
+}
+
+.coupon-divider {
+  text-align: center;
+  position: relative;
+  margin: 20px 0;
+}
+
+.coupon-divider::before,
+.coupon-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ddd;
+}
+
+.coupon-divider::before { left: 0; }
+.coupon-divider::after { right: 0; }
+
+.coupon-divider span {
+  background: #f8f9fa;
+  padding: 0 12px;
+  color: #666;
+  font-size: 13px;
+}
+
+.available-coupons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.coupon-item {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  position: relative;
+}
+
+.coupon-item:hover {
+  border-color: #667eea;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.coupon-item.selected {
+  border-color: #28a745;
+  background: #f0fff4;
+}
+
+.coupon-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.coupon-code {
+  font-weight: 700;
+  font-size: 18px;
+  color: #667eea;
+  margin-bottom: 4px;
+}
+
+.coupon-desc {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.coupon-value {
+  font-weight: 700;
+  font-size: 16px;
+  color: #f5576c;
+}
+
+.coupon-conditions {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.coupon-expiry {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.coupon-select-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.coupon-item.selected .coupon-select-btn {
+  background: #28a745;
+}
+
+.coupon-select-btn:hover {
+  transform: scale(1.05);
+}
+</style>
+
+<!-- JavaScript -->
+<script>
+let subtotal = @ViewBag.Subtotal;
+let shippingFee = subtotal >= 5000000 ? 0 : 150000;
+let discountAmount = 0;
+let selectedCoupon = null;
+
+// Load available coupons
+async function loadCoupons() {
+  try {
+    const response = await fetch('/Coupons/GetAvailableCoupons?orderAmount=' + subtotal);
+    const coupons = await response.json();
+    
+    const container = document.getElementById('availableCoupons');
+    container.innerHTML = '';
+    
+    if (coupons.length === 0) {
+      container.innerHTML = '<p class="text-muted text-center py-3">Không có mã giảm giá khả dụng</p>';
+      return;
+    }
+    
+    coupons.forEach(coupon => {
+      const canUse = subtotal >= coupon.minOrderAmount;
+      const item = document.createElement('div');
+      item.className = 'coupon-item' + (canUse ? '' : ' disabled');
+      item.innerHTML = `
+        <div class="coupon-code">${coupon.code}</div>
+        <div class="coupon-desc">${coupon.description}</div>
+        <div class="coupon-value">Giảm ${coupon.discountPercent > 0 ? coupon.discountPercent + '%' : coupon.discountAmount?.toLocaleString() + '₫'}</div>
+        ${coupon.maxDiscountAmount ? `<div class="coupon-conditions">Giảm tối đa ${coupon.maxDiscountAmount.toLocaleString()}₫</div>` : ''}
+        <div class="coupon-conditions">Đơn tối thiểu ${coupon.minOrderAmount.toLocaleString()}₫</div>
+        <div class="coupon-expiry">HSD: ${new Date(coupon.endDate).toLocaleDateString('vi-VN')}</div>
+        ${canUse ? `<button class="coupon-select-btn" onclick="selectCoupon('${coupon.code}')">Chọn</button>` : ''}
+      `;
+      
+      if (!canUse) {
+        item.title = `Đơn hàng tối thiểu ${coupon.minOrderAmount.toLocaleString()}₫`;
+      }
+      
+      container.appendChild(item);
+    });
+  } catch (error) {
+    console.error('Error loading coupons:', error);
+  }
+}
+
+function selectCoupon(code) {
+  document.getElementById('manualCouponInput').value = code;
+  applyManualCoupon();
+}
+
+function applyManualCoupon() {
+  const code = document.getElementById('manualCouponInput').value.trim().toUpperCase();
+  if (!code) {
+    showMessage('Vui lòng nhập mã giảm giá', 'warning');
+    return;
+  }
+  
+  applyCoupon(code);
+}
+
+function applyCoupon(code) {
+  fetch('/Coupons/Validate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ code: code, orderAmount: subtotal })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.valid) {
+      discountAmount = data.discount;
+      selectedCoupon = code;
+      updateTotal();
+      
+      // Update UI
+      document.getElementById('selectedCouponText').textContent = `${code} (-${data.discount.toLocaleString()}₫)`;
+      document.getElementById('selectedCouponText').style.color = '#28a745';
+      
+      // Mark selected in list
+      document.querySelectorAll('.coupon-item').forEach(item => {
+        if (item.querySelector('.coupon-code').textContent === code) {
+          item.classList.add('selected');
+        } else {
+          item.classList.remove('selected');
+        }
+      });
+      
+      // Add hidden input
+      let input = document.getElementById('couponCodeInput');
+      if (!input) {
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'couponCode';
+        input.id = 'couponCodeInput';
+        document.getElementById('checkoutForm').appendChild(input);
+      }
+      input.value = code;
+      
+      showMessage(`✓ Đã áp dụng mã ${code} - Giảm ${data.discount.toLocaleString()}₫`, 'success');
+      
+      // Collapse
+      setTimeout(() => {
+        const collapse = new bootstrap.Collapse(document.getElementById('couponList'), { toggle: false });
+        collapse.hide();
+      }, 1000);
+    } else {
+      showMessage(data.message, 'danger');
+    }
+  })
+  .catch(err => {
+    showMessage('Lỗi khi kiểm tra mã giảm giá', 'danger');
+  });
+}
+
+function updateTotal() {
+  const total = subtotal + shippingFee - discountAmount;
+  document.getElementById('total').textContent = total.toLocaleString('vi-VN') + '₫';
+  
+  if (discountAmount > 0) {
+    document.getElementById('discount').textContent = '-' + discountAmount.toLocaleString('vi-VN') + '₫';
+    document.getElementById('discountRow').style.display = 'flex';
+  } else {
+    document.getElementById('discountRow').style.display = 'none';
+  }
+}
+
+function showMessage(text, type) {
+  const messageEl = document.getElementById('couponMessage');
+  messageEl.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show"><i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'} me-2"></i>${text}<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>`;
+  
+  setTimeout(() => {
+    messageEl.innerHTML = '';
+  }, 5000);
+}
+
+// Load coupons on page load
+document.addEventListener('DOMContentLoaded', loadCoupons);
+</script>
